@@ -1,23 +1,23 @@
+#TI3032-U3-EVALUACIÓN-SUMATIVA-PYTHON-MONGODB-AlexanderCortés-AngeloZamora
 import os
 import subprocess
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
-# Cargar variables de entorno (opcional)
 load_dotenv()
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+MONGO_URI = os.getenv("MONGO_URI")
 
-# Conexión a MongoDB
+client: MongoClient = MongoClient(MONGO_URI)
+
 try:
-    print("Estableciendo conexión...⏳")
-    client = MongoClient(MONGO_URI)
+    print("Estableciendo conexión ⌛")
     client.admin.command("ping")
-    print("Conexión establecida 😊")
-except Exception as e:
-    print(f"❌ ERROR EN LA CONEXIÓN: {e}")
-    exit(1)
+    print(" Conexión establecida 😁 👌")
+except:
+    print(" ❌ Error de conexión 🤣 🤣")
+    exit(code=1)
 
-db = client["TI3032_U3_EF"]
+db = client["TI3032_U3_EF"]  # Elijo la base de datos
 coleccion_invitados = db["invitados"]
 coleccion_eventos = db["eventos"]
 
